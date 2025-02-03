@@ -48,4 +48,7 @@
     1. eg:- _auth>authApi.js_ for all the api related work. and for the common actions of RTK we'll use _auth>authSlice.js_ file.
     2. connecting with the base _apiSlice.js_ file:- we'll import the apiSlice and inject the endPoints into it _apiSlice.injectEndpoints({ endpoints: (builder) => ({ // endpoints }), })_ because this is the mother of all queries.
     3. work flow:- create folders named as features and create files as featureApi.js, featureSlice.js. Import the mother object and push.
-2.
+2.  after logging in we'll get an access token that will help us to re-auth if the user return back to the browser within an hour.
+    So access token must be stored in local storage beside keeping in redux state and this operation can be done after awaiting from frontend but this time we'll set it in from the endpoints.
+    1. when an endpoint runs it also calls an async function "onQueryStated" we can overwrite it hence that will let us know whenever the query is accomplished but it be called when the request starts to go. provides us a few things in the parameters (arg, {queryFulfilled, dispatch}) and we can know when the request end by awaiting "queryFulfilled". after getting the result we can do-some and also dispatch any actions. It's good to manage all the business logic out from the frontend.
+3.  d

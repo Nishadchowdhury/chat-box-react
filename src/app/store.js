@@ -11,7 +11,7 @@ export const store = configureStore({
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authSliceReducer,
     conversation: conversationSliceReducer,
-    messages: messagesSliceReducer
+    messages: messagesSliceReducer,
   },
 
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
