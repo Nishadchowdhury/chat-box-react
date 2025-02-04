@@ -50,5 +50,9 @@
     3. work flow:- create folders named as features and create files as featureApi.js, featureSlice.js. Import the mother object and push.
 2.  after logging in we'll get an access token that will help us to re-auth if the user return back to the browser within an hour.
     So access token must be stored in local storage beside keeping in redux state and this operation can be done after awaiting from frontend but this time we'll set it in from the endpoints.
-    1. when an endpoint runs it also calls an async function "onQueryStated" we can overwrite it hence that will let us know whenever the query is accomplished but it be called when the request starts to go. provides us a few things in the parameters (arg, {queryFulfilled, dispatch}) and we can know when the request end by awaiting "queryFulfilled". after getting the result we can do-some and also dispatch any actions. It's good to manage all the business logic out from the frontend.
-3.  d
+    1. when an endpoint runs it also calls an async function "onQueryStarted" we can overwrite it hence that will let us know whenever the query is accomplished but it be called when the request starts to go. provides us a few things in the parameters (arg, {queryFulfilled, dispatch}) and we can know when the request end by awaiting "queryFulfilled". after getting the result we can do-some and also dispatch any actions. It's good to manage all the business logic out from the frontend.
+3.  it's time to make requests with some common headers such as tokes that is common for all the requests so we need to place
+    it in a common place. and the common of all apis is baseQuery's option "prepareHeaders" _apiSlice.js_ file.
+4.  as we lost all the states after reloading the page of store. we have to persist the token to re auth and we did in localStorage.
+    so we need to check is there any token in localStorage in the root of the app hence we can access the token from anywhere of the app. so we decide "app.js" we'll check the states from here and update the redux state.
+

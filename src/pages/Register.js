@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 
 export default function Register() {
 
-    const [name, setName] = useState('Nishad');
-    const [email, setEmail] = useState(Math.random() + "@a12.com");
-    const [password, setPassword] = useState('111111');
-    const [confirmPassword, setConfirmPassword] = useState('111111');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [agree, setAgree] = useState(false);
     const [error, setError] = useState('');
 
@@ -29,7 +29,7 @@ export default function Register() {
         }
 
 
-    }, [data, errorMessage])
+    }, [data, errorMessage, navigate])
 
 
     const handleSubmit = (e) => {
