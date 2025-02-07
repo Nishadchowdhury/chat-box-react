@@ -3,6 +3,8 @@ import Navigation from "../components/inbox/Navigation";
 import Sidebar from "../components/inbox/Sidebar";
 
 export default function Inbox() {
+
+
     return (
         <div>
             <Navigation />
