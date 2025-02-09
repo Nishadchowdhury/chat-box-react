@@ -2,6 +2,10 @@ import { useSelector } from "react-redux";
 import { useGetConversationsQuery } from "../../features/conversations/convesationsApi";
 import ChatItem from "./ChatItem";
 import Error from "../ui/Error";
+import moment from "moment";
+import getPartnerInfo from "../../utils/getPartnerInfo";
+import gravatarUrl from "gravatar-url"
+import { Link } from "react-router-dom";
 
 export default function ChatItems() {
 
@@ -12,7 +16,7 @@ export default function ChatItems() {
 
     const usersss = useSelector(state => state.auth)
 
-    
+
 
     let content = null;
     if (isLoading) {
@@ -23,14 +27,22 @@ export default function ChatItems() {
         content = <li className="m-2 text-center" >No conversations found.</li>
     } else if (!isLoading && !isError && conversation?.length > 0) {
         content = conversation.map(singleConversation => {
+            const { id, message, timestamp, users } = singleConversation;
+
+            const { name, email: partnerEmail } = getPartnerInfo(users, email)
+
             return (
-                <li key={singleConversation?.id}>
-                    <ChatItem
-                        avatar="https://cdn.pixabay.com/photo/2018/09/12/12/14/man-3672010__340.jpg"
-                        name="Saad Hasan"
-                        lastMessage="bye"
-                        lastTime="25 minutes"
-                    />
+                <li key={id}>
+                    <Link to={`/inbox/${id}`}>
+                        <ChatItem
+                            avatar={gravatarUrl(partnerEmail, {
+                                size: 80,
+                            })}
+                            name={name}
+                            lastMessage={message}
+                            lastTime={moment(timestamp).fromNow()}
+                        />
+                    </Link>
                 </li>
             )
         })
