@@ -24,7 +24,6 @@ export default function Messages({ messages = [] }) {
                             message={lastMessage}
                         />
                     }
-
                     )
                 }
 
